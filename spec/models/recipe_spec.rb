@@ -7,13 +7,21 @@ RSpec.describe Recipe, type: :model do
     @ingre_3 = Ingredient.create!(name: "tomato", cost: 3)
     @ingre_4 = Ingredient.create!(name: "olive oil", cost: 10)
     @ingre_5 = Ingredient.create!(name: "water", cost: 0)
+    @ingre_6 = Ingredient.create!(name: "hydrogen water", cost: 20)
 
     @ez_ziti = Recipe.create!(name: "EZ ziti", complexity: 1, genre: "Italian")
+    @super_ziti = Recipe.create!(name: "EZ ziti", complexity: 1, genre: "Italian")
 
     @ez_ziti_ingres_1 = RecipeIngredient.create!(ingredient_id: @ingre_1.id, recipe_id: @ez_ziti.id)
     @ez_ziti_ingres_2 = RecipeIngredient.create!(ingredient_id: @ingre_2.id, recipe_id: @ez_ziti.id)
     @ez_ziti_ingres_3 = RecipeIngredient.create!(ingredient_id: @ingre_3.id, recipe_id: @ez_ziti.id)
     @ez_ziti_ingres_4 = RecipeIngredient.create!(ingredient_id: @ingre_4.id, recipe_id: @ez_ziti.id)
+
+    @super_ziti_ingre_1 = RecipeIngredient.create!(ingredient_id: @ingre_1.id, recipe_id: @super_ziti.id)
+    @super_ziti_ingre_2 = RecipeIngredient.create!(ingredient_id: @ingre_2.id, recipe_id: @super_ziti.id)
+    @super_ziti_ingre_3 = RecipeIngredient.create!(ingredient_id: @ingre_3.id, recipe_id: @super_ziti.id)
+    @super_ziti_ingre_4 = RecipeIngredient.create!(ingredient_id: @ingre_4.id, recipe_id: @super_ziti.id)
+    @super_ziti_ingre_5 = RecipeIngredient.create!(ingredient_id: @ingre_6.id, recipe_id: @super_ziti.id)
   end
    
   describe "validations" do
@@ -31,6 +39,8 @@ RSpec.describe Recipe, type: :model do
     describe "#total_cost" do
       it "sums the total cost of all ingredients for a specific recipe" do
         expect(@ez_ziti.total_cost).to eq(19)
+        expect(@super_ziti.total_cost).to eq(39)
+
       end
     end
   end
